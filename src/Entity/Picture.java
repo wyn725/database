@@ -1,8 +1,8 @@
 package Entity;
 
-public class Plant {
-    public String id;
-    public String altername;     //植物名称
+public class Picture {
+    public String photoId;
+    public String photoPlace;     //植物名称
     public String familyname;     //植物科名
     public String feature;     //植物特征
     public String value;      //植物应用价值
@@ -11,20 +11,20 @@ public class Plant {
     public String disAreaID;       //地区编号
 
 
-    public String getId() {
-        return id;
+    public String getphotoId() {
+        return photoId;
     }
 
-    public void setId(String id) {
+    public void setphotoId(String photoId) {
         this.id = id;
     }
 
-    public String getAltername() {
-        return altername;
+    public String getphotoPlace() {
+        return photoPlace;
     }
 
-    public void setAltername(String altername) {
-        this.altername = altername;
+    public void setphotoPlace(String photoPlace) {
+        this.photoPlace = photoPlace;
     }
 
     public String getFamilyname() {
@@ -78,14 +78,14 @@ public class Plant {
     @Override
     public String toString() {
         return "植物{" +
-                "植物名称='" + altername + '\'' +
+                "植物id='" + id + '\'' +
+                ", 植物名称='" + photoPlace + '\'' +
                 ", 植物科名='" + familyname + '\'' +
                 ", 植物特征='" + feature + '\'' +
                 ", 植物应用价值='" + value + '\'' +
                 ", 植物栽培要点='" + skill + '\'' +
                 ", 分类编号=" + classifyID +
                 ", 地区编号='" + disAreaID + '\'' +
-
                 '}';
     }
 }

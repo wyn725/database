@@ -1,13 +1,13 @@
-package Dao.Plant;
+package Dao.Impl;
 import Dao.DaoBase;
+import Dao.PlantDao;
 import Entity.Plant;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
-public class PlantDaoImpl extends DaoBase implements Dao.plant.PlantDao {
+public class PlantDaoImpl extends DaoBase implements PlantDao {
     @Override
     /*PreparedStatement 是 Java JDBC 中的一个接口，用于表示预编译的 SQL 语句的对象。
     它是 java.sql.PreparedStatement 接口的实例。通过使用 PreparedStatement，
@@ -116,8 +116,23 @@ public class PlantDaoImpl extends DaoBase implements Dao.plant.PlantDao {
     }
 
     @Override
-    public List<Plant> findPlant(String id, int i) {
-        return null;
+    public void findPlant(Plant plant) {
+        String sql = "select A_Plant.*, A_Picture.* " +
+                "FROM A_Plant p\n" +
+                "JOIN A_Plant_Picture pp ON p.id = pp.plantId\n" +
+                "JOIN A_Picture pic ON pp.photoId = pic.photoId" +
+                "where id= ?;";
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, plant.getId());
+            preparedStatement.executeUpdate();
+            System.out.println("Find successful!");
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }
